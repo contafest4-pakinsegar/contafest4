@@ -9,7 +9,7 @@
     /* Circle animation */
     .circle-progress {
       transform: rotate(-90deg);
-      transition: stroke-dashoffset 0.2s ease;
+      transition: stroke-dashoffset 0.1s linear;
     }
 
     /* Remove number input arrows */
@@ -57,17 +57,36 @@
     <h1 class="text-3xl md:text-4xl font-semibold mb-8">Countdown Timer</h1>
 
     <!-- Timer Display -->
-    <div class="relative flex justify-center items-center mb-10">
-      <svg class="absolute w-64 h-64 md:w-72 md:h-72" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="2" fill="none"
-          class="text-gray-200 dark:text-gray-700" />
-        <circle id="progressCircle" cx="100" cy="100" r="90" stroke="currentColor" stroke-width="5" fill="none"
-          class="circle-progress text-blue-500"
-          stroke-dasharray="565.48" stroke-dashoffset="565.48" stroke-linecap="round" />
-      </svg>
-      <div class="relative z-10">
-        <div id="display" class="text-5xl md:text-6xl font-mono font-light tracking-widest">
-          00:00:00.000
+    <div class="relative flex flex-col justify-center items-center mb-8">
+      <div class="relative flex justify-center items-center">
+        <svg class="absolute w-80 h-80 pointer-events-none -z-10 opacity-40" viewBox="0 0 200 200">
+          <circle
+            cx="100"
+            cy="100"
+            r="90"
+            stroke="currentColor"
+            stroke-width="2"
+            fill="none"
+            class="text-gray-200 dark:text-gray-700"
+          />
+          <circle
+            id="progressCircle"
+            cx="100"
+            cy="100"
+            r="90"
+            stroke="currentColor"
+            stroke-width="4"
+            fill="none"
+            class="circle-progress text-blue-500"
+            stroke-dasharray="565.48"
+            stroke-dashoffset="565.48"
+            stroke-linecap="round"
+          />
+        </svg>
+        <div class="relative z-10 text-center">
+          <div id="display" class="text-6xl md:text-7xl font-mono font-light tabular-nums">
+            00:00:00.000
+          </div>
         </div>
       </div>
     </div>
