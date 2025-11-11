@@ -420,6 +420,8 @@
         }
         
         if (displayNum === 0) { // Check displayNum instead of num
+          finishAudio.currentTime = 0;
+          finishAudio.play().catch(() => {});
           // Throw confetti!
           throwConfetti();
           
@@ -473,6 +475,8 @@
       const timerDisplayContainer = $('#timerDisplayContainer');
       const timerSegments = $$('.editable-time', timerDisplayContainer);
       const finishAudio = $('#finishAudio');
+      finishAudio.volume = 0.4;
+      finishAudio.load();
       let timerState = 'idle'; // 'idle' | 'running' | 'paused' | 'finished'
       let timerInitialMs = 5 * 60 * 1000;
       let timerEndAt = null;
@@ -572,12 +576,10 @@
         cancelAnimationFrame(timerRAF);
         setTimerState('finished');
         updateTimerDisplay(0);
-        // Remove this line: showFinalCountdown(0);
         
-        setTimeout(() => {
-          finishAudio.currentTime = 0;
-          finishAudio.play().catch(() => {});
-        }, 400);
+        // Play audio immediately (no setTimeout)
+        finishAudio.currentTime = 0;
+        finishAudio.play().catch(() => {});
       }
       const thresholds = [
         30 * 60 * 1000, // 30 minutes left
